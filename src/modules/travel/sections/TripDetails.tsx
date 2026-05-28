@@ -66,17 +66,11 @@ const TripDetails = () => {
 
       {/* Content */}
       <div className="max-w-4xl mx-auto px-6 py-16 md:py-24">
-        {trip.story ? (
+        {trip.story && (
           <div className="mb-20">
             <p className="text-gray-400 font-light text-lg leading-relaxed whitespace-pre-line animate-fade-in-up" style={{ animationDelay: "0.2s", animationFillMode: "forwards" }}>
               {trip.story}
             </p>
-          </div>
-        ) : (
-          <div className="text-center py-20 mb-20 bg-white/[0.03] rounded-3xl border border-white/[0.06] animate-fade-in-up">
-            <p className="text-4xl mb-4">✍️</p>
-            <p className="text-gray-500 font-light text-lg">Curating the stories and photos from this trip...</p>
-            <p className="text-gray-400 font-light mt-2">Check back later for updates.</p>
           </div>
         )}
 

@@ -29,6 +29,22 @@ const trips: Trip[] = [
     "coordinates": [
       30.0668,
       79.0193
+    ],
+    "coverImage": "/travel/uttarakhand-march-2026/08-backview-peaks.png",
+    "gallery": [
+      "/travel/uttarakhand-march-2026/08-backview-peaks.png",
+      "/travel/uttarakhand-march-2026/07-crampons-summit.png",
+      "/travel/uttarakhand-march-2026/04-standing-peaks.png",
+      "/travel/uttarakhand-march-2026/03-sitting-peaks.png",
+      "/travel/uttarakhand-march-2026/05-devprayag.png",
+      "/travel/uttarakhand-march-2026/06-night-snow.png",
+      "/travel/uttarakhand-march-2026/09-snowfield.png",
+      "/travel/uttarakhand-march-2026/02-bikes-lake.png",
+      "/travel/uttarakhand-march-2026/13-bike-ride.png",
+      "/travel/uttarakhand-march-2026/10-rafting.jpeg",
+      "/travel/uttarakhand-march-2026/01-group-huddle.png",
+      "/travel/uttarakhand-march-2026/11-friends.jpeg",
+      "/travel/uttarakhand-march-2026/12-misty-forest.png"
     ]
   },
   {
