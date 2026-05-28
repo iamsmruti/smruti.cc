@@ -1,4 +1,6 @@
 import BookCover from "../../assets/book-cover.png"
+import { SiAmazon, SiFlipkart } from "react-icons/si"
+import { HiBookOpen } from "react-icons/hi"
 
 const featuredBook = {
   title: "Her Struggles, My Wings",
@@ -13,26 +15,29 @@ const featuredBook = {
     {
       name: "Amazon",
       url: "https://www.amazon.in/dp/B0GTQC3L7G",
-      icon: "📦",
-      color: "#FF9900",
-      bg: "#FFF8EC",
-      border: "#FFD77A",
+      Icon: SiAmazon,
+      bg: "#131921",
+      iconColor: "#FF9900",
+      textColor: "#ffffff",
+      hover: "#1e2a38",
     },
     {
       name: "Flipkart",
       url: "https://www.flipkart.com/her-struggles-my-wings/p/itmdce1e5b71f7b6?pid=9798903301454",
-      icon: "🛒",
-      color: "#2874F0",
-      bg: "#EDF4FF",
-      border: "#A8C9FF",
+      Icon: SiFlipkart,
+      bg: "#2874F0",
+      iconColor: "#FFE500",
+      textColor: "#ffffff",
+      hover: "#1a65de",
     },
     {
       name: "Pothi",
       url: "https://store.pothi.com/book/smruti-ranjan-badatya-her-struggle-my-wings/",
-      icon: "📚",
-      color: "#E05C2A",
-      bg: "#FFF1EC",
-      border: "#F9B99A",
+      Icon: HiBookOpen,
+      bg: "#E05C2A",
+      iconColor: "#ffffff",
+      textColor: "#ffffff",
+      hover: "#c94f22",
     },
   ],
 }
@@ -87,10 +92,12 @@ const Books = () => {
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2.5 px-5 py-3 rounded-xl text-sm font-medium transition-all hover:-translate-y-0.5 hover:shadow-md"
-                    style={{ backgroundColor: link.bg, color: link.color, border: `1px solid ${link.border}` }}
+                    className="flex items-center gap-3 px-5 py-3 rounded-xl text-sm font-medium transition-all hover:-translate-y-0.5 hover:shadow-lg"
+                    style={{ backgroundColor: link.bg, color: link.textColor }}
+                    onMouseEnter={e => (e.currentTarget.style.backgroundColor = link.hover)}
+                    onMouseLeave={e => (e.currentTarget.style.backgroundColor = link.bg)}
                   >
-                    <span>{link.icon}</span>
+                    <link.Icon style={{ color: link.iconColor, fontSize: "1.1rem", flexShrink: 0 }} />
                     <span>Buy on {link.name}</span>
                   </a>
                 ))}
