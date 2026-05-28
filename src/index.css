@@ -1,0 +1,234 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Facet Accent Colors */
+  --accent-engineer: #6C63FF;
+  --accent-engineer-glow: rgba(108, 99, 255, 0.15);
+  --accent-travel: #F59E0B;
+  --accent-travel-glow: rgba(245, 158, 11, 0.15);
+  --accent-creator: #EF4444;
+  --accent-creator-glow: rgba(239, 68, 68, 0.15);
+  --accent-entrepreneur: #10B981;
+  --accent-entrepreneur-glow: rgba(16, 185, 129, 0.15);
+  --accent-interests: #8B5CF6;
+  --accent-interests-glow: rgba(139, 92, 246, 0.15);
+
+  /* Surface Colors */
+  --surface-0: #000000;
+  --surface-1: #0A0A0A;
+  --surface-2: #121212;
+  --surface-3: #1A1A1A;
+  --surface-4: #222222;
+  --surface-border: #2A2A2A;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: var(--surface-0);
+  color: white;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ===== Glassmorphism ===== */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.glass-strong {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ===== Animations ===== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes typewriter-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.6s ease-out forwards;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Staggered animations */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+.stagger-6 { animation-delay: 0.6s; }
+
+/* ===== Card Hover Effects ===== */
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* ===== Gradient Text ===== */
+.gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #a3a3a3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== Page section common ===== */
+.page-section {
+  margin-bottom: 120px;
+}
+
+/* ===== Light Theme Utilities ===== */
+.light-glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.light-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+}
+
+.light-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* ===== Markdown ===== */
+.markdown > * {
+  all: revert;
+}
+
+.markdown h1, h2, h3, h4 {
+  font-weight: 400 !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.markdown > ol {
+  margin-top: 0.5rem;
+}
+
+.markdown > ul {
+  margin-top: 0.2rem;
+}
+
+.markdown li {
+  margin-top: 0.5rem;
+}
+
+.markdown > h4 {
+  margin-bottom: 0;
+  font-size: 20px;
+}
+
+.markdown > hr {
+  margin: 2rem 0;
+}
+
+.markdown > p {
+  font-weight: 300;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.markdown > b {
+  font-weight: 500;
+}
+
+.markdown a {
+  color: rgb(133, 192, 255);
+}
+
+.markdown a:hover{
+  text-decoration: underline;
+}
+
+.markdown > blockquote {
+  margin-left: 0px;
+  padding-left: 1rem;
+  border-left: 4px solid rgb(226, 139, 139);
+  color: rgb(133, 192, 255);
+}
