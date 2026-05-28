@@ -1,72 +1,97 @@
+import { useState } from 'react'
 import { Map, Marker } from 'pigeon-maps'
-import { useNavigate } from 'react-router-dom'
-import trips from '../data/trips'
+import trips, { Trip } from '../data/trips'
 import { useSectionTimer } from '../../../hooks/useSectionTimer'
+import TripModal from './TripModal'
 
-// Custom map style using MapTiler's basic dark theme
-// Note: pigeon-maps default OSM provider is fine too, but MapTiler looks better for dark mode if you have a key.
-// Without a key, we'll use a custom dark theme provider built over standard OSM
-function customDarkProvider(x: number, y: number, z: number) {
-  // Free CartoDB dark matter tiles
+function darkProvider(x: number, y: number, z: number) {
   return `https://cartodb-basemaps-a.global.ssl.fastly.net/dark_all/${z}/${x}/${y}.png`
 }
 
+const uniquePlaces = new Set(trips.map(t => t.destination)).size
+const STATES = 11
+const COUNTRIES = 2
+
 const TravelMap = () => {
   const ref = useSectionTimer("travel-map")
-  const navigate = useNavigate()
+  const [selected, setSelected] = useState<Trip | null>(null)
 
   return (
-    <div ref={ref as any} className="page-section px-4">
-      <div className="max-w-5xl mx-auto">
-        <div className="flex items-center gap-6 mb-10 opacity-0 animate-fade-in-up">
-          <h2 className="text-4xl md:text-5xl font-extralight text-[#4c82c5] tracking-tight">Footprints</h2>
-          <div className="flex-1 h-px bg-gradient-to-r from-[#4c82c5]/30 to-transparent" />
-        </div>
+    <>
+      <div ref={ref as any} className="w-full relative" style={{ height: "90vh" }}>
 
-        <div className="glass rounded-3xl overflow-hidden h-[500px] md:h-[600px] w-full relative group shadow-2xl shadow-black/50 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
-          {/* Overlay to allow scrolling over the map without trapping the scroll wheel immediately */}
-          <div className="absolute inset-0 pointer-events-none border border-white/5 rounded-3xl z-10" />
-          
-          <Map 
-            provider={customDarkProvider} 
-            defaultCenter={[20.5937, 78.9629]} // Center of India
-            defaultZoom={5} 
-            maxZoom={12}
-            minZoom={4}
-            metaWheelZoom={true} // Requires meta key (Cmd/Ctrl) to scroll zoom so user doesn't get stuck
-          >
-            {trips.map((trip, i) => (
-              <Marker 
-                key={i} 
-                width={40} 
-                anchor={trip.coordinates} 
-                onClick={() => navigate(`/travel/${trip.slug}`)}
-                hover={true}
-              >
-                <div className="group/marker cursor-pointer relative flex items-center justify-center translate-y-[-50%]">
-                  {/* Map Pin UI */}
-                  <div className="w-10 h-10 bg-black/60 backdrop-blur-md border border-[#4c82c5]/50 rounded-full flex items-center justify-center text-xl shadow-lg z-10 relative hover:scale-125 transition-transform duration-300 hover:bg-[#4c82c5]/20">
-                    {trip.emoji}
-                  </div>
-                  
-                  {/* Ping animation behind the marker */}
-                  <div className="absolute inset-0 w-full h-full rounded-full bg-[#4c82c5] opacity-20 animate-ping" style={{ animationDuration: '3s' }} />
+        <Map
+          provider={darkProvider}
+          defaultCenter={[22, 82]}
+          defaultZoom={5}
+          maxZoom={13}
+          minZoom={3}
+          metaWheelZoom={true}
+        >
+          {trips.map((trip, i) => (
+            <Marker
+              key={i}
+              width={28}
+              anchor={trip.coordinates}
+              onClick={() => setSelected(trip)}
+            >
+              <div className="relative flex items-center justify-center cursor-pointer group -translate-x-1/2 -translate-y-1/2">
+                {/* Pulse ring */}
+                <div
+                  className="absolute w-5 h-5 rounded-full bg-[#4c82c5] opacity-25 animate-ping"
+                  style={{ animationDuration: "2.8s", animationDelay: `${(i * 0.3) % 2}s` }}
+                />
+                {/* Dot */}
+                <div className="w-2.5 h-2.5 rounded-full bg-[#4c82c5] border border-white/30 shadow-md shadow-[#4c82c5]/40 relative z-10 group-hover:scale-150 group-hover:bg-white transition-all duration-200" />
 
-                  {/* Tooltip on Hover */}
-                  <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 w-max px-3 py-1.5 bg-black/90 backdrop-blur-md border border-white/10 rounded-xl opacity-0 group-hover/marker:opacity-100 transition-opacity pointer-events-none z-20 shadow-xl">
-                    <p className="text-[#4c82c5] font-medium text-sm">{trip.destination}</p>
-                    <p className="text-gray-400 font-light text-xs">{trip.date}</p>
-                  </div>
+                {/* Tooltip */}
+                <div className="absolute bottom-full mb-2.5 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-black/90 backdrop-blur-md border border-white/[0.08] rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-20 whitespace-nowrap shadow-xl">
+                  <p className="text-white text-xs font-light">{trip.destination}</p>
+                  <p className="text-[#4c82c5] text-[10px] font-light">{trip.date}</p>
                 </div>
-              </Marker>
-            ))}
-          </Map>
+              </div>
+            </Marker>
+          ))}
+        </Map>
+
+        {/* Title overlay — top left */}
+        <div className="absolute top-6 left-6 z-20 pointer-events-none">
+          <p className="text-2xl font-light text-white drop-shadow-lg">
+            <span className="font-[200] text-gray-400">Travel </span>
+            <span className="text-[#4c82c5]">Log</span>
+          </p>
+          <p className="text-[10px] text-gray-600 font-light mt-1 tracking-wide">Cmd / Ctrl + scroll to zoom</p>
         </div>
-        <p className="text-center text-gray-500 font-light text-sm italic mt-4 mb-4 opacity-0 animate-fade-in" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
-          Scroll with Cmd/Ctrl to zoom. Click any pin to open the travel log.
-        </p>
+
+        {/* Stats overlay — bottom left */}
+        <div className="absolute bottom-6 left-6 z-20 pointer-events-none">
+          <div className="glass rounded-2xl px-5 py-4">
+            <p className="text-[9px] text-gray-500 uppercase tracking-[0.2em] font-medium mb-3">My Footprints</p>
+            <div className="flex gap-5">
+              {[
+                { value: trips.length, label: "Trips" },
+                { value: uniquePlaces, label: "Places" },
+                { value: STATES, label: "States" },
+                { value: COUNTRIES, label: "Countries" },
+              ].map(({ value, label }) => (
+                <div key={label} className="flex flex-col">
+                  <span className="text-xl font-light text-white leading-none">{value}</span>
+                  <span className="text-[9px] text-gray-500 uppercase tracking-wider mt-1">{label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Scroll hint — bottom right */}
+        <div className="absolute bottom-6 right-6 z-20 pointer-events-none flex flex-col items-center gap-2 opacity-60">
+          <p className="text-[9px] text-gray-500 uppercase tracking-[0.2em]">Scroll to explore</p>
+          <div className="w-px h-8 bg-gradient-to-b from-gray-500 to-transparent" />
+        </div>
       </div>
-    </div>
+
+      {selected && <TripModal trip={selected} onClose={() => setSelected(null)} />}
+    </>
   )
 }
 

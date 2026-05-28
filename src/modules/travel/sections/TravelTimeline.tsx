@@ -14,7 +14,7 @@ const TravelTimeline = () => {
   const navigate = useNavigate()
 
   return (
-    <div className="page-section px-4">
+    <div className="page-section px-4 pt-16">
       <div className="max-w-5xl mx-auto">
         {sortedYears.map((year, yearIndex) => (
           <div key={year} className="mb-20">
