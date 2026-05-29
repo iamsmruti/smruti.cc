@@ -10,24 +10,28 @@ const socials = [
     handle: "in/iamsmruti",
     url: "https://www.linkedin.com/in/iamsmruti/",
     icon: FaLinkedin,
+    color: "#0A66C2",
   },
   {
     name: "GitHub",
     handle: "iamsmruti",
     url: "https://github.com/iamsmruti",
     icon: FaGithub,
+    color: "#FFFFFF",
   },
   {
     name: "Instagram",
     handle: "__iamsmruti",
     url: "https://www.instagram.com/__iamsmruti",
     icon: AiFillInstagram,
+    color: "#E4405F",
   },
   {
     name: "Email",
     handle: "smruti.ranjan@outlook.in",
     url: "mailto:smruti.ranjan@outlook.in",
     icon: MdEmail,
+    color: "#4c82c5",
   },
 ]
 
@@ -77,7 +81,7 @@ const Contact = () => {
                 style={{ animationDelay: `${i * 0.08}s`, animationFillMode: 'forwards' }}
               >
                 <div className="flex items-center gap-3">
-                  <s.icon className="text-lg text-gray-400 group-hover:text-white transition-colors" />
+                  <s.icon className="text-lg" style={{ color: s.color }} />
                   <span className="text-gray-400 font-light text-sm group-hover:text-gray-200 transition-colors">{s.handle}</span>
                 </div>
                 <FaExternalLinkAlt className="text-xs text-gray-600 group-hover:text-gray-400 transition-colors" />

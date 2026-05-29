@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import Home from "./modules/home"
 import Portfolio from "./modules/portfolio"
 import Travel from "./modules/travel"
 import Creator from "./modules/creator"
@@ -16,8 +15,7 @@ const App = () => {
       <Container>
         <Routes>
           <Route element={<AnalyticsWrapper />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/" element={<Portfolio />} />
             <Route path="/books" element={<Book />} />
             <Route path="/travel-log" element={<Travel />} />
             <Route path="/travel-log/:slug" element={<TripDetails />} />

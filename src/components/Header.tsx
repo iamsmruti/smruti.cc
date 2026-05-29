@@ -4,10 +4,9 @@ import { HiMenuAlt3, HiX } from "react-icons/hi"
 
 const links = [
   { name: "Home", path: "/" },
-  { name: "Portfolio", path: "/portfolio" },
   { name: "Books", path: "/books" },
-  { name: "Travel Log", path: "/travel-log" },
-  { name: "Creator", path: "/creator" },
+  { name: "Blog", path: "/blog" },
+  { name: "Content", path: "/creator" },
 ]
 
 const Header = ({ isDark }: { isDark: boolean }) => {

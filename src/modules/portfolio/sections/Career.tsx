@@ -1,5 +1,6 @@
 import { FaLinkedin, FaExternalLinkAlt } from "react-icons/fa"
 import { useSectionTimer } from '../../../hooks/useSectionTimer'
+import Stats from "./Stats"
 
 const companies = [
   {
@@ -99,6 +100,8 @@ const Career = () => {
             </div>
           ))}
         </div>
+
+        <Stats />
       </div>
     </div>
   )

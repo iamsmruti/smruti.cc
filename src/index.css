@@ -184,13 +184,22 @@ html {
 }
 
 /* ===== Markdown ===== */
+.markdown {
+  color: rgb(209, 213, 219);
+  font-size: 1.0625rem;
+  line-height: 1.8;
+}
+
 .markdown > * {
   all: revert;
+  color: inherit;
 }
 
 .markdown h1, h2, h3, h4 {
   font-weight: 400 !important;
+  margin-top: 2rem !important;
   margin-bottom: 0.5rem !important;
+  color: #fff !important;
 }
 
 .markdown > ol {
@@ -225,7 +234,7 @@ html {
 }
 
 .markdown a {
-  color: rgb(133, 192, 255);
+  color: #4c82c5;
 }
 
 .markdown a:hover{
@@ -236,5 +245,37 @@ html {
   margin-left: 0px;
   padding-left: 1rem;
   border-left: 4px solid rgb(226, 139, 139);
-  color: rgb(133, 192, 255);
+  color: #4c82c5;
+}
+
+.markdown code {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  padding: 0.15em 0.4em;
+  font-size: 0.875em;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Courier New", monospace;
+}
+
+.markdown pre {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+.markdown pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.875rem;
+}
+
+.markdown img {
+  border-radius: 12px;
+  max-width: 100%;
+  height: auto;
+  margin: 1.5rem 0;
 }

@@ -3,6 +3,46 @@ import { AiFillInstagram } from "react-icons/ai"
 import { HiExternalLink, HiGlobe } from "react-icons/hi"
 import { blogIndex } from "../../../content"
 
+const iconColors = new Map<unknown, string>([
+  [FaYoutube, "#FF0000"],
+  [AiFillInstagram, "#E4405F"],
+  [FaTelegram, "#26A5E4"],
+  [FaLinkedin, "#0A66C2"],
+  [HiGlobe, "#4c82c5"],
+])
+
+const GAME_PLACEHOLDER = `data:image/svg+xml,${encodeURIComponent(`
+<svg xmlns='http://www.w3.org/2000/svg' width='800' height='450' viewBox='0 0 800 450'>
+  <defs>
+    <linearGradient id='bg' x1='0' y1='0' x2='0' y2='1'>
+      <stop offset='0' stop-color='#0a1326'/>
+      <stop offset='1' stop-color='#05070d'/>
+    </linearGradient>
+    <radialGradient id='glow' cx='50%' cy='40%' r='60%'>
+      <stop offset='0' stop-color='#4c82c5' stop-opacity='0.30'/>
+      <stop offset='1' stop-color='#4c82c5' stop-opacity='0'/>
+    </radialGradient>
+  </defs>
+  <rect width='800' height='450' fill='url(#bg)'/>
+  <rect width='800' height='450' fill='url(#glow)'/>
+  <g stroke='#4c82c5' stroke-opacity='0.20'>
+    <line x1='0' y1='300' x2='800' y2='300'/>
+    <line x1='0' y1='320' x2='800' y2='320'/>
+    <line x1='0' y1='346' x2='800' y2='346'/>
+    <line x1='0' y1='380' x2='800' y2='380'/>
+    <line x1='0' y1='420' x2='800' y2='420'/>
+    <line x1='400' y1='300' x2='-260' y2='450'/>
+    <line x1='400' y1='300' x2='60' y2='450'/>
+    <line x1='400' y1='300' x2='240' y2='450'/>
+    <line x1='400' y1='300' x2='400' y2='450'/>
+    <line x1='400' y1='300' x2='560' y2='450'/>
+    <line x1='400' y1='300' x2='740' y2='450'/>
+    <line x1='400' y1='300' x2='1060' y2='450'/>
+  </g>
+  <text x='400' y='278' text-anchor='middle' font-family='Inter, Arial, sans-serif' font-size='34' font-weight='600' fill='#ffffff' letter-spacing='2'>SILICON M-ULATION</text>
+  <text x='400' y='303' text-anchor='middle' font-family='Inter, Arial, sans-serif' font-size='13' font-weight='400' fill='#4c82c5' letter-spacing='6'>GAMING · EMULATION</text>
+</svg>`)}`
+
 const channels = [
   {
     name: "Agile Coder",
@@ -24,8 +64,8 @@ const channels = [
       { title: "The Right Way to Setup Node, Express + TS Project", url: "https://www.youtube.com/watch?v=oODlPLfnTIk", thumbnail: "https://img.youtube.com/vi/oODlPLfnTIk/maxresdefault.jpg" },
     ],
     posts: [
-      { title: "Setting up a React Project From Scratch", url: "https://agilecoder.in/blog/setting-up-a-react-project-from-scratch", thumbnail: "https://s3-eu-north-1.amazonaws.com/agile-coder-bucket/2025/02/react-project-setup-in-2024.png", date: "Feb 3, 2025" },
-      { title: "SEO for Next.js: Optimize Your Application for Search Engines", url: "https://agilecoder.in/blog/seo-for-next-js-how-to-optimize-your-application-for-search-engines/", thumbnail: "https://s3-eu-north-1.amazonaws.com/agile-coder-bucket/2024/10/seo-in-nextjs-metadata-configurations-1.png", date: "Oct 3, 2024" },
+      { title: "Manage Multiple Claude Code Profiles like a Pro", url: "https://www.agilecoder.in/blog/manage-multiple-claude-code-profiles-like-a-pro", thumbnail: "https://res.cloudinary.com/dqr9hdjjp/image/upload/v1779821602/agilecoder/amyqhl86g0cvhr8bjdoj.png", date: "May 27, 2026" },
+      { title: "Building a Developer Friendly Business: Why Should You Care?", url: "https://www.agilecoder.in/blog/building-a-developer-friendly-business-why-should-you-care", thumbnail: "https://res.cloudinary.com/dqr9hdjjp/image/upload/v1779303037/agilecoder/posts/agilecoder/posts/building-a-developer-friendly-business-why-should-you-care.jpg", date: "May 21, 2026" },
     ],
   },
   {
@@ -33,7 +73,7 @@ const channels = [
     handle: "@silicon-mulation",
     thumbnail: "",
     description: "Exploring the intersection of silicon and simulation. AI art, creative coding experiments, and the kind of tech that feels like magic.",
-    tags: ["AI", "Creative Coding", "Experiments"],
+    tags: ["Gaming", "Apple Silicon", "Emulation"],
     links: [
       { Icon: HiGlobe,    label: "silicon-mulation.vercel.app", url: "https://silicon-mulation.vercel.app", accent: false },
       { Icon: FaYoutube,  label: "silicon-mulation",            url: "https://www.youtube.com/@silicon-mulation", accent: false },
@@ -43,11 +83,12 @@ const channels = [
     blogUrl: "https://silicon-mulation.vercel.app",
     blogLabel: "artfulcoding.in",
     videos: [
-      { title: "Create Stunning Images for FREE with DreamShaper", url: "https://www.youtube.com/watch?v=Yt4Jw9GpTM0", thumbnail: "https://img.youtube.com/vi/Yt4Jw9GpTM0/maxresdefault.jpg" },
+      { title: "Is Macbook Pro M4 Pro powerful enough for RPCS3 Emulation", url: "https://www.youtube.com/watch?v=KTmCskflbQ4", thumbnail: "https://img.youtube.com/vi/KTmCskflbQ4/maxresdefault.jpg" },
+      { title: "Can a MacBook Survive 25 Years of GTA? You'll be surprised!", url: "https://www.youtube.com/watch?v=YMSxKLvlaSM", thumbnail: "https://img.youtube.com/vi/YMSxKLvlaSM/maxresdefault.jpg" },
     ],
     posts: [
-      { title: "Uncovering the Cardiod: Beauty, Math & Code", url: "https://artfulcoding.in/blog/fractals/cardiod", thumbnail: "https://artfulcoding.in/_next/image?url=%2Fassets%2Fthumbnails%2Fcardiod.png&w=3840&q=75", date: "May, 2024" },
-      { title: "Simple Fractal Tree", url: "https://artfulcoding.in/blog/fractals/simple_fractal_tree", thumbnail: "https://artfulcoding.in/_next/image?url=%2Fassets%2Fthumbnails%2Fsimple_fractal_tree.png&w=3840&q=75", date: "May, 2024" },
+      { title: "What's the Difference b/w Emulation and Virtualization", url: "https://silicon-mulation.vercel.app/blogs/what-s-the-difference-b-w-emulation-and-virtualization", thumbnail: GAME_PLACEHOLDER, date: "2026" },
+      { title: "Best PS1 Emulators for Mac 2026", url: "https://silicon-mulation.vercel.app/blogs/best-ps1-emulators-for-mac-2026", thumbnail: GAME_PLACEHOLDER, date: "2026" },
     ],
   },
   {
@@ -65,7 +106,10 @@ const channels = [
     youtubeUrl: "https://www.youtube.com/@smrutify",
     blogUrl: "/blog",
     blogLabel: "smruti.cc/blog",
-    videos: [],
+    videos: [
+      { title: "3 Days in Phuket, Thailand 🇹🇭 | Travel, Food & Adventure Vlog", url: "https://www.youtube.com/watch?v=IX4zr9GHzTw", thumbnail: "https://img.youtube.com/vi/IX4zr9GHzTw/maxresdefault.jpg" },
+      { title: "A Memory | Teacher's Day Celebration with Manish Sir at ALLEN BBSR | Leader Batch (2019-2020)", url: "https://www.youtube.com/watch?v=AfvH8nWRSEA", thumbnail: "https://img.youtube.com/vi/AfvH8nWRSEA/hqdefault.jpg" },
+    ],
     posts: blogIndex.map((p) => ({
       title: p.title,
       url: `/blog/${p.slug}`,
@@ -119,7 +163,7 @@ const ChannelShowcase = () => {
                   {channel.links.map(({ Icon, label, url }) => (
                     <a key={label} href={url} target="_blank" rel="noopener noreferrer"
                       className="flex items-center gap-2 text-xs text-gray-500 hover:text-white transition-colors">
-                      <Icon className="text-sm flex-shrink-0 text-[#4c82c5]" />
+                      <Icon className="text-sm flex-shrink-0" style={{ color: iconColors.get(Icon) ?? "#4c82c5" }} />
                       <span className="truncate">{label}</span>
                       <HiExternalLink className="text-xs opacity-30 ml-auto flex-shrink-0" />
                     </a>

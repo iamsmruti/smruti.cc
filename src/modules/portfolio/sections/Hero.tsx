@@ -25,12 +25,12 @@ const Hero = () => {
 
       {/* Title */}
       <h1 className="md:text-8xl sm:text-6xl text-4xl text-center mb-4 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.3s', animationFillMode: 'forwards' }}>
-        <span className="font-[200] text-gray-500">Software </span>
-        <span className="font-[300] tracking-tight">Engineer</span>
+        <span className="font-[200] text-gray-500">I'm </span>
+        <span className="font-[300] tracking-tight text-white">Smruti Ranjan</span>
       </h1>
 
       <p className="text-xl md:text-2xl font-extralight text-[#4c82c5] mb-6 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.4s', animationFillMode: 'forwards' }}>
-        I love to Build.
+        Software Engineer · Content Creator
       </p>
 
       {/* Separator */}

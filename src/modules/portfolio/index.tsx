@@ -1,5 +1,6 @@
 import Hero from "./sections/Hero"
 import Career from "./sections/Career"
+import OpenSource from "./sections/OpenSource"
 import Brands from "./sections/Brands"
 import FreelanceClients from "./sections/FreelanceClients"
 import Skills from "./sections/Skills"
@@ -10,6 +11,7 @@ const Portfolio = () => {
     <div className="w-full overflow-hidden">
       <Hero />
       <Career />
+      <OpenSource />
       <Brands />
       <FreelanceClients />
       <Skills />
